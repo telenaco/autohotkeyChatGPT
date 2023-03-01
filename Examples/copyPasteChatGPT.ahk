@@ -49,14 +49,15 @@ SendInput, {Ctrl Down}c{Ctrl Up}
 Page.Evaluate("var textBox = document.getElementsByClassName('m-0 w-full resize-none border-0 bg-transparent p-0 pl-2 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent md:pl-0')[0];")
 
 ; Set the value of the text box to the clipboard text
-Page.Evaluate("textBox.value = '" Clipboard "';")
+Page.Evaluate("textBox.value = '" StrReplace(Clipboard, "'", "\'") "';")
+;Page.Evaluate("textBox.value = '" Clipboard "';")
 
 
 ; Execute a JavaScript code snippet to submit the form
 Page.Evaluate("var event = new KeyboardEvent('keydown', {key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true, cancelable: true});")
 Page.Evaluate("textBox.dispatchEvent(event);")
 
-MsgBox, 0, Generating response, Press Esc or Enter when done
+MsgBox, 4100, Generating response, Press Esc or Enter when done
 IfMsgBox OK
 {
     ;code here when pressing enter
